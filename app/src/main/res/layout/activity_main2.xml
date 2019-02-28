@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+tools:context=".Main2Activity"
+android:orientation="vertical">
+
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fillViewport="false"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="2"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="@string/movie_name"
+            android:textAlignment="gravity"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="2"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="8dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="129dp"
+                android:layout_height="168dp"
+                android:layout_alignRight="@id/relative"
+                android:layout_alignBottom="@id/relative"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:contentDescription="@string/getName"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher_round"
+                tools:ignore="NotSibling"
+                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@id/relative" />
+
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/relative"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@id/imageView"
+                android:gravity="start"
+                android:text="@string/year"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                tools:ignore="NotSibling"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/imageView" />
+
+            <TextView
+                android:id="@+id/vote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/year"
+                android:layout_alignBottom="@id/relative"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="25dp"
+                android:layout_toRightOf="@id/imageView"
+                android:gravity="start"
+                android:text="@string/vote"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                tools:ignore="NotSibling"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/imageView"
+                android:layout_marginStart="20dp" />
+
+            <TextView
+                android:id="@+id/average"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/year"
+                android:layout_alignLeft="@+id/year"
+                android:layout_alignTop="@id/vote"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="30dp"
+                android:text="@string/rate"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/average"
+                android:layout_alignRight="@id/relative"
+                android:layout_alignBottom="@id/relative"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/imageView"
+                android:text="@string/favorite"
+                tools:ignore="NotSibling"
+                android:layout_alignEnd="@id/relative"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="24dp"
+                android:layout_toEndOf="@id/imageView" />
+
+
+            <TextView
+                android:id="@+id/tDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:layout_below="@id/imageView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@id/relative"
+                tools:ignore="NotSibling"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rel1"
+    >
+
+    <ListView
+        android:id="@+id/list_Trailer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        tools:listitem="10"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+
+    >
+
+    <ListView
+        android:id="@+id/list_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        tools:listitem="5"
+        />
+
+</RelativeLayout>
+</LinearLayout>

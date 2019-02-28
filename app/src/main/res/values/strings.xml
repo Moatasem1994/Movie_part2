@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">My Movies</string>
+    <string name="popular" tools:keep="@string/popular"> Popular</string>
+    <string name="vote" tools:keep="@string/vote"> Vote</string>
+    <string name="movie_name"> movie name</string>
+    <string name="desc" tools:keep="@string/desc">Here the overview of the film</string>
+    <string name="name" tools:keep="@string/name">Name</string>
+    <string name="overview" tools:keep="@string/overview">OverView</string>
+    <string name="rate" tools:keep="@string/rate">Vote_Count</string>
+    <string name="title_activity_main3" tools:keep="@string/title_activity_main3">Main3Activity</string>
+    <string name="getName" tools:keep="@string/getName">key1</string>
+    <string name="getImage" tools:keep="@string/getImage">key2</string>
+    <string name="getVote" tools:keep="@string/getVote">key4</string>
+    <string name="getDes" tools:keep="@string/getDes">key3</string>
+    <string name="min" tools:keep="@string/min">min</string>
+    <string name="year" tools:keep="@string/year">Year</string>
+    <string name="favorite" tools:keep="@string/favorite">Mark As favorite</string>
+    <string name="trailer1" tools:keep="@string/trailer1">trailer1</string>
+    <string name="Favorite_Menu" tools:keep="@string/Favorite_Menu">Favorite</string>
+    <string name="reviews" tools:keep="@string/reviews">here add all reviews you need it oka</string>
+    <string name="Value" tools:keep="@string/Value">Value</string>
+
+</resources>
