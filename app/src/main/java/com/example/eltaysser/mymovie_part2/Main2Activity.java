@@ -21,13 +21,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.eltaysser.mymovie_part2.dataBase.FavoriteList;
 import com.example.eltaysser.mymovie_part2.dataBase.RepositoryData;
 import com.example.eltaysser.mymovie_part2.dataBase.MyViewModel;
+import com.example.eltaysser.mymovie_part2.dataBase.Top_Rated;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -40,7 +43,7 @@ public class Main2Activity extends AppCompatActivity {
     private MyViewModel myViewModel;
     private ListView list_Reviews;
     private ListView listView;
-
+    String postImage,desc,vote,year,average,path;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,51 +54,70 @@ public class Main2Activity extends AppCompatActivity {
         TextView tVote = findViewById(R.id.vote);
         TextView tYear = findViewById(R.id.year);
         TextView tAverage = findViewById(R.id.average);
-        list_Reviews = findViewById(R.id.list_reviews);
+//        list_Reviews = findViewById(R.id.list_reviews);
         Button bFavorite = findViewById(R.id.button);
         myViewModel =ViewModelProviders.of(Main2Activity.this).get(MyViewModel.class);
         listView = findViewById(R.id.list_Trailer);
+//        ListUtils.setDynamicHeight(listView);
+//        ListUtils.setDynamicHeight(list_Reviews);
+        final TextView ttt=findViewById(R.id.text_Reviews);
+
 
         // here use getParcelableExtra instead of using getBundle
         Intent intent = getIntent();
         LayoutContent layoutContent = intent.getParcelableExtra("layoutContent");
+        Top_Rated topRated=intent.getParcelableExtra("topR");
         if (layoutContent != null) {
             name = layoutContent.getMovieName();
-            String postImage = layoutContent.getImageUrlForPicasso();
-            String desc = layoutContent.getDescription();
-            String vote = layoutContent.getVoteCount();
-            String year = layoutContent.getYear().substring(0, 4);
-            String average = layoutContent.getVoteAverage();
-            String path = ConstantValue.pathForImage;
+             postImage = layoutContent.getImageUrlForPicasso();
+             desc = layoutContent.getDescription();
+             vote = layoutContent.getVoteCount();
+             year = layoutContent.getYear().substring(0, 4);
+             average = layoutContent.getVoteAverage();
+             path = ConstantValue.pathForImage;
             moveId = String.valueOf(layoutContent.getMoveID());
-            Picasso.get().load(path + postImage).into(imageView);
-            tName.setText(name);
-            tOverView.setText(desc);
-            tVote.setText(vote + R.string.min);
-            tYear.setText(year);
-            tAverage.setText(average + R.string.Value);
-            final String trailer = "Trailer";
-
-            String urlTrailer = "http://api.themoviedb.org/3/movie/" + moveId + "/videos?api_key=092042c5d3956048aa1d5341d1571bdf";
-            new AsyncClass(Main2Activity.this.getApplication(), new AsyncClass.GetTrailer() {
-                @Override
-                public void sendAdapter(List<TrailerInfo> trailerInfos) {
-                    listView.setAdapter(new Adapter(Main2Activity.this,trailerInfos));
-                }
-            },trailer).execute(urlTrailer);
-
-
-                    String urlReviews = "https://api.themoviedb.org/3/movie/" + moveId + "/reviews?api_key=4d9c9de3bdf0d3b6837c49c086e3b190";
-            new AsyncClass(Main2Activity.this.getApplication(), new AsyncClass.getMyReviews() {
-                @Override
-                public void sendReviews(List<Reviews> reviews) {
-                    list_Reviews.setAdapter(new Adapter_Reviews(Main2Activity.this.getApplication(),reviews));
-
-                }
-            },"Reviews").execute(urlReviews);
+        }else if (topRated!=null){
+            name=topRated.getMovieName();
+            postImage=topRated.getImageUrlForPicasso();
+            desc=topRated.getDescription();
+            vote= String.valueOf(topRated.getVoteCount());
+            year=topRated.getYear();
+            average=topRated.getVoteAverage();
+            moveId= String.valueOf(topRated.getMoveID());
+            path=ConstantValue.pathForImage;
 
         }
+        Toast.makeText(Main2Activity.this,""+moveId,Toast.LENGTH_SHORT).show();
+        Picasso.get().load(path + postImage).into(imageView);
+        tName.setText(name);
+        tOverView.setText(desc);
+        tVote.setText(vote + R.string.min);
+        tYear.setText(year);
+        tAverage.setText(average + R.string.Value);
+        final String trailer = "Trailer";
 
+        String urlTrailer = "http://api.themoviedb.org/3/movie/" + moveId + "/videos?api_key=092042c5d3956048aa1d5341d1571bdf";
+        new AsyncClass(Main2Activity.this.getApplication(), new AsyncClass.GetTrailer() {
+            @Override
+            public void sendAdapter(List<TrailerInfo> trailerInfos) {
+                if (trailerInfos!=null){
+                listView.setAdapter(new Adapter(Main2Activity.this,trailerInfos));
+            }}
+        },trailer).execute(urlTrailer);
+
+
+        String urlReviews = "https://api.themoviedb.org/3/movie/" + moveId + "/reviews?api_key=4d9c9de3bdf0d3b6837c49c086e3b190";
+        new AsyncClass(Main2Activity.this.getApplication(), new AsyncClass.getMyReviews() {
+            @Override
+            public void sendReviews(List<Reviews> reviews) {
+//                list_Reviews.setAdapter(new Adapter_Reviews(Main2Activity.this.getApplication(),reviews));
+                String text="";
+                for (int i = 0; i <reviews.size() ; i++) {
+                    text=text+reviews.get(i).getReviews()+"\n";
+                }
+                ttt.setText(text);
+            }
+        },"Reviews").execute(urlReviews);
 
         bFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,8 +125,6 @@ public class Main2Activity extends AppCompatActivity {
                 showDialog();
             }
         });
-
-
     }
 
     @Override
@@ -217,5 +237,26 @@ public class Main2Activity extends AppCompatActivity {
         }
 
     }
-
+    /*
+    public static class ListUtils {
+        public static void setDynamicHeight(ListView mListView) {
+            ListAdapter mListAdapter = mListView.getAdapter();
+            if (mListAdapter == null) {
+                // when adapter is null
+                return;
+            }
+            int height = 0;
+            int desiredWidth = View.MeasureSpec.makeMeasureSpec(mListView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+            for (int i = 0; i < mListAdapter.getCount(); i++) {
+                View listItem = mListAdapter.getView(i, null, mListView);
+                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                height += listItem.getMeasuredHeight();
+            }
+            ViewGroup.LayoutParams params = mListView.getLayoutParams();
+            params.height = height + (mListView.getDividerHeight() * (mListAdapter.getCount() - 1));
+            mListView.setLayoutParams(params);
+            mListView.requestLayout();
+        }
+    }
+*/
 }

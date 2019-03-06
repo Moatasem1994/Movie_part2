@@ -6,7 +6,7 @@ import android.content.Context;
 
 import com.example.eltaysser.mymovie_part2.LayoutContent;
 
-@Database(entities = {LayoutContent.class,FavoriteList.class},version =2,exportSchema = false)
+@Database(entities = {LayoutContent.class,FavoriteList.class,Top_Rated.class},version =3,exportSchema = false)
 public abstract class DataBase extends RoomDatabase {
     static private DataBase myinstance;
     private static final String DATABASE_NAME="Movie2";

@@ -19,5 +19,7 @@
     <string name="Favorite_Menu" tools:keep="@string/Favorite_Menu">Favorite</string>
     <string name="reviews" tools:keep="@string/reviews">here add all reviews you need it oka</string>
     <string name="Value" tools:keep="@string/Value">Value</string>
+    <string name="trailer" tools:keep="@string/trailer">Trailers</string>
+
 
 </resources>

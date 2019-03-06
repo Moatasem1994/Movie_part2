@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
     <TextView
         android:id="@+id/MovieName_Favorite"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_width="185dp"
+        android:layout_height="76dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:text="@string/movie_name"
         android:textAlignment="gravity"
-        android:gravity="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/ratingBar_Favorite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.898"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        />
+        app:layout_constraintVertical_bias="0.642" />
 
     <RatingBar
         android:id="@+id/ratingBar_Favorite"
-        android:layout_width="231dp"
-        android:layout_height="50dp"
+        android:layout_width="189dp"
+        android:layout_height="52dp"
 
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="140dp"
         app:layout_constraintEnd_toEndOf="@+id/MovieName_Favorite"
-        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintHorizontal_bias="0.955"
         app:layout_constraintStart_toStartOf="@+id/MovieName_Favorite"
         app:layout_constraintTop_toTopOf="parent" />
 

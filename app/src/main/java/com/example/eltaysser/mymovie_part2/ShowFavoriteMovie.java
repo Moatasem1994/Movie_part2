@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -21,7 +22,7 @@ public class ShowFavoriteMovie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_favorite_movie);
         recyclerView=findViewById(R.id.recycle_Favorite);
-       recyclerView.setLayoutManager(new LinearLayoutManager(this));
+       recyclerView.setLayoutManager(new GridLayoutManager(this,2));
        recyclerView.setHasFixedSize(true);
         MyViewModel viewModel=ViewModelProviders.of(this).get(MyViewModel.class);
         viewModel.get_favorite().observe(this, new Observer<List<FavoriteList>>() {

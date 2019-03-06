@@ -4,6 +4,8 @@ import android.app.Application;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.example.eltaysser.mymovie_part2.dataBase.Top_Rated;
+
 import java.util.List;
 
 
@@ -15,10 +17,16 @@ class AsyncClass extends AsyncTask<String, Void,Void> {
     private Get get;
     private GetTrailer getTrailer;
     private getMyReviews getMyReviews;
+    private GetTopRates getTopRates;
     private final String key;
     public AsyncClass(Application application, Get get, String key) {
         this.application = application;
         this.get=get;
+        this.key=key;
+    }
+    public AsyncClass(Application application, GetTopRates getTopRates, String key) {
+        this.application = application;
+        this.getTopRates=getTopRates;
         this.key=key;
     }
     public AsyncClass(Application application, GetTrailer getTrailer, String key){
@@ -39,7 +47,7 @@ class AsyncClass extends AsyncTask<String, Void,Void> {
         // inside this class --> GetMovies you make connection with internet
         // and get the ArrayList of type LayoutContent and This Class contain Method GetArray
         //  that's return ArrayList of type LayoutContent , items will show in recycleView
-        GetMovies getMovies = new GetMovies(application);
+        final GetMovies getMovies = new GetMovies(application);
         switch (key) {
             case "Trailer":
                 getMovies.getTrailers(url, new GetMovies.CallBackTrailer() {
@@ -65,6 +73,13 @@ class AsyncClass extends AsyncTask<String, Void,Void> {
                         getMyReviews.sendReviews(reviews);
                     }
                 });
+            case "Top_Rated":
+                getMovies.GetTopRated(url, new GetMovies.VolleyBackTopRated() {
+                    @Override
+                    public void onSuccessResponse(List<Top_Rated> top_rateds) {
+                        getTopRates.sendTop_Rated(top_rateds);
+                    }
+                });
                 break;
 
                 default:
@@ -84,7 +99,9 @@ class AsyncClass extends AsyncTask<String, Void,Void> {
     }
     public interface getMyReviews{
         void sendReviews(List<Reviews> reviews);
-
+    }
+    public interface GetTopRates{
+        void sendTop_Rated(List<Top_Rated>top_rateds);
     }
 
 }

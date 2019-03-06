@@ -5,5 +5,9 @@
         android:title="@string/Favorite_Menu"
         app:showAsAction="never"
         android:orderInCategory="3"/>
+    <item android:id="@+id/Top_Rated"
+        android:title="Top Rated"
+        app:showAsAction="never"
+        />
 
 </menu>

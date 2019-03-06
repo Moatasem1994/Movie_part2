@@ -80,8 +80,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.favorite_movie:
                 startActivity(new Intent(MainActivity.this,ShowFavoriteMovie.class));
                 return true;
+            case R.id.Top_Rated:
+                  startActivity(new Intent(MainActivity.this,Main3Activity.class));
             default:return super.onOptionsItemSelected(item);
         }
     }
+    
 
 }

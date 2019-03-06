@@ -22,4 +22,9 @@ interface CRUD {
    @Query("SELECT * FROM favorite ORDER BY MyRate DESC")
    LiveData<List<FavoriteList>> getAllFavoriteMovie();
 
+   @Insert(onConflict =OnConflictStrategy.REPLACE)
+   void insertTopRated(Top_Rated topRated);
+   @Query("SELECT * FROM top ORDER BY voteCount DESC")
+   LiveData<List<Top_Rated>> getAllTopRated();
+
 }
